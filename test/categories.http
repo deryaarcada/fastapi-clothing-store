@@ -1,18 +1,99 @@
 @baseUrl = {{$dotenv API_URL}}
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Iiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzcwMTUwODk5fQ.XocM1imeq51f5Xyb-GUEwMpb9zje4fmE4K6XAosyvB8
+
 ### Get all categories
 GET {{baseUrl}}/categories
 
-### Get category by id
-GET {{baseUrl}}/categories/1
+### Get all products
+# Shows name, category, price, and stock
+GET {{baseUrl}}/products
 
-
-### Create category
-POST {{baseUrl}}/categories
+### Place a new order
+# Decreases stock and returns order details
+POST {{baseUrl}}/orders
 Content-Type: application/json
 
 {
-  "name": "Gloves"
+  "customer_id": 1,
+  "product_id": 2,
+  "quantity": 2
+}
+
+### Get user sales statistics
+# Shows order count and total money spent per user
+GET {{baseUrl}}/statistics/customers
+Authorization: Bearer {{token}}
+
+### Get product sales statistics
+# Shows order count and turnover per product
+GET {{baseUrl}}/statistics/products
+Authorization: Bearer {{token}}
+
+### New User (Register)
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "first_name": "Test_user_name",
+  "last_name": "Test_user_surname",
+  "email": "test2@example.com",
+  "password": "123"
+}
+
+### Login User and get the token
+POST {{baseUrl}}/users/login
+Content-Type: application/json
+
+{
+  "email": "emma@example.com",  
+  "password": "123"
 }
 
 
+### Delete User (Admin only)
+DELETE {{baseUrl}}/users/8
+Authorization: Bearer {{token}}
+
+### List my own orders
+GET {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+
+
+### New Product (Admin only)
+POST {{baseUrl}}/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "category_id": 1,
+  "name": "Oversized Blue Jacket",
+  "price": 89.90,
+  "stock": 15
+}
+
+### Delete Product (Admin only)
+DELETE {{baseUrl}}/products/15
+Authorization: Bearer {{token}}
+
+### Update Product price (PATCH)
+PATCH {{baseUrl}}/products/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "price": 29.99
+}
+
+
+### Update Product (PUT -Whole resource)
+PUT {{baseUrl}}/products/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "category_id": 1,
+  "name": "Basic White T-Shirt",
+  "price": 15.00,
+  "stock": 100
+}
