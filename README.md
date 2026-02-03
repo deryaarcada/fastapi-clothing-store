@@ -23,7 +23,7 @@ bash =></br>
 2. Run with Docker:</br>
 bash =></br>
 - docker-compose up --build</br>
-The API will be available at http://localhost:8000. </br>
+The API will be available at http://localhost:8080. </br>
 
 ## Admin Setup
 To set your initial user as an admin, run the following SQL command in your database: </br>
