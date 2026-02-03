@@ -17,15 +17,15 @@ DevOps: Docker & Docker-Compose</br>
 
 ## Installation & Setup
 1. Clone the Repository:</br>
-bash </br>
+bash =></br>
  - git clone <your-repository-url></br>
  - cd fastapi-clothing-store</br>
 2. Run with Docker:</br>
-bash</br>
+bash =></br>
 - docker-compose up --build</br>
 The API will be available at http://localhost:8000. </br>
 
 ## Admin Setup
 To set your initial user as an admin, run the following SQL command in your database: </br>
-sql</br>
+sql =></br>
 - UPDATE customers SET role = 'admin' WHERE email = 'your-email@example.com';</br>
