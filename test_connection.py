@@ -5,18 +5,18 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-print(f"Bağlantı stringi: {DATABASE_URL}")
+print(f"Conn string: {DATABASE_URL}")
 
 try:
     conn = psycopg.connect(DATABASE_URL)
-    print("✓ Bağlantı başarılı!")
+    print("✓ Connection successful!")
     
     # Test sorgusu
     with conn.cursor() as cur:
         cur.execute("SELECT 1 as test")
         result = cur.fetchone()
-        print(f"✓ Test sorgusu çalıştı: {result}")
+        print(f"✓ TEst query worked: {result}")
     
     conn.close()
 except Exception as e:
-    print(f"✗ Bağlantı hatası: {e}")
+    print(f"XXX Connection error: {e}")
