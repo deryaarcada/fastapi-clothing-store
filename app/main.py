@@ -200,7 +200,7 @@ def verify_password(plain_password, hashed_password):
         return False
 
 # --- ENDPOINTS---
-
+# create user (register)
 @app.post("/users", status_code=201)
 def register_user(data: dict):
     first_name = data.get("first_name")
@@ -226,6 +226,7 @@ def register_user(data: dict):
             # If email already exists, a unique constraint violation will occur
             raise HTTPException(status_code=400, detail="This email is already registered.")
 
+#login endpoint
 @app.post("/users/login")
 def login(data: dict):
     email = data.get("email")
@@ -245,6 +246,7 @@ def login(data: dict):
         )
         return {"access_token": access_token, "token_type": "bearer"}
     
+
 @app.get("/statistics/customers")
 def get_customer_statistics(current_user: dict = Depends(get_current_user)):
     # 1. 403 error raise if the user is not admin

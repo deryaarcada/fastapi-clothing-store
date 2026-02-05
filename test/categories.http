@@ -1,6 +1,6 @@
 @baseUrl = {{$dotenv API_URL}}
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Iiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzcwMTUwODk5fQ.XocM1imeq51f5Xyb-GUEwMpb9zje4fmE4K6XAosyvB8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Iiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzcwMzEwODg1fQ.NYIDt1V9TEUwwCPJiuoRnJzYuAnB4QGnJcEJ-rf3VqA
 
 ### Get all categories
 GET {{baseUrl}}/categories
@@ -15,7 +15,7 @@ POST {{baseUrl}}/orders
 Content-Type: application/json
 
 {
-  "customer_id": 1,
+  "customer_id": 6,
   "product_id": 2,
   "quantity": 2
 }
@@ -50,7 +50,6 @@ Content-Type: application/json
   "password": "123"
 }
 
-
 ### Delete User (Admin only)
 DELETE {{baseUrl}}/users/8
 Authorization: Bearer {{token}}
@@ -58,6 +57,17 @@ Authorization: Bearer {{token}}
 ### List my own orders
 GET {{baseUrl}}/orders
 Authorization: Bearer {{token}}
+
+### place order with token
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "product_id": 1,
+  "quantity": 2
+}
+
 
 
 ### New Product (Admin only)
